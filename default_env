@@ -1,0 +1,8 @@
+APP_USER_UID=1000
+APP_GROUP_GID=1000
+PGHOST=db
+PGUSER=postgres
+PGPASSWORD=password
+HISTFILE=/usr/src/app/log/.bash_history
+REDIS_URL=redis://redis:6379/1
+POSTGRES_PASSWORD=password
