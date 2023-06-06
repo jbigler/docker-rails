@@ -1,0 +1,43 @@
+FROM ruby:3.1.3-slim
+
+ARG APP_PATH=/usr/src/app
+ARG APP_USER=appuser
+ARG APP_GROUP=appgroup
+ARG APP_USER_UID=7084
+ARG APP_GROUP_GID=2001
+
+RUN apt-get update -qq && apt-get install -yq --no-install-recommends \
+    build-essential \
+    gnupg2 \
+    curl \
+    less \
+    git \
+    libpq-dev \
+    postgresql-client \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN groupadd --system -g $APP_GROUP_GID $APP_GROUP \
+  && adduser --system --shell /sbin/nologin --uid $APP_USER_UID --ingroup $APP_GROUP $APP_USER \
+  && mkdir -p $APP_PATH \
+  && chown $APP_USER:$APP_GROUP $APP_PATH \
+  && chgrp -R $APP_GROUP /usr/local/bundle
+
+ENV LANG=C.UTF-8 \
+  BUNDLE_JOBS=4 \
+  BUNDLE_RETRY=3
+
+COPY scripts/entrypoint.sh /usr/bin
+COPY scripts/wait-for-tcp.sh /usr/bin
+
+RUN chmod +x /usr/bin/entrypoint.sh
+RUN chmod +x /usr/bin/wait-for-tcp.sh
+
+WORKDIR $APP_PATH
+USER $APP_USER
+
+RUN gem update --system && gem install bundler
+
+EXPOSE 3000
+
+ENTRYPOINT ["/usr/bin/entrypoint.sh"]
+CMD ["bin/dev"]

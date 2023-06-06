@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: ./app
+    tty: true
+    env_file: .env
+    ports:
+      - "0.0.0.0:3000:3000"
+    depends_on:
+      - db
+      - redis
+  db:
+    image: postgres:14
+    env_file: .env
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+  redis:
+    image: redis
+    volumes:
+      - redis_data:/data
+
+volumes:
+  pg_data:
+  redis_data:
