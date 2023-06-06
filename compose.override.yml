@@ -1,11 +1,11 @@
 services:
-  app:
+  rails:
     build:
       args:
         - APP_USER_UID=${APP_USER_UID}
         - APP_GROUP_GID=${APP_GROUP_GID}
     volumes:
-      - ./app:/usr/src/app
+      - ./rails:/usr/src/app
       - gems:/usr/local/bundle
     depends_on:
       - selenium

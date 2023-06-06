@@ -26,8 +26,8 @@ ENV LANG=C.UTF-8 \
   BUNDLE_JOBS=4 \
   BUNDLE_RETRY=3
 
-COPY scripts/entrypoint.sh /usr/bin
-COPY scripts/wait-for-tcp.sh /usr/bin
+COPY --from=scripts entrypoint.sh /usr/bin
+COPY --from=scripts wait-for-tcp.sh /usr/bin
 
 RUN chmod +x /usr/bin/entrypoint.sh
 RUN chmod +x /usr/bin/wait-for-tcp.sh

@@ -1,9 +1,12 @@
 version: '3.7'
 
 services:
-  app:
+  rails:
     build:
-      context: ./app
+      context: ./rails
+      additional_contexts:
+        - scripts=./scripts
+      dockerfile: ../Dockerfile.rails-dev
     tty: true
     env_file: .env
     ports:
