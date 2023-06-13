@@ -16,6 +16,7 @@ https://www.postgresql.org/docs/current/libpq-pgpass.html
 `docker compose run --no-deps --entrypoint /bin/sh --rm rails` to enter console for the rails app container.
 
 Do the following from within the docker container.
+
 `bundle install`
 
 Use the rails new command to create the application. Customize to suit needs, ie. testing framework.
@@ -59,7 +60,7 @@ Rails.application.configure do
 	end
 ...
 ```
-`docker compose run --no-deps --entrypoint 'bundle install' --rm rails
+`docker compose run --no-deps --entrypoint 'bundle install' --rm rails`
 
 `docker compose up -d`
 
