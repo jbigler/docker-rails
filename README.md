@@ -10,11 +10,14 @@ In production the password can be configured in a separate file for security.
 https://www.postgresql.org/docs/current/libpq-pgpass.html
 
 `git init`
-`docker-compose build`
-`docker compose run --no-deps --entrypoint /bin/sh --rm rails`
-to enter console for the rails app container.
 
-`bundle install
+`docker-compose build`
+
+`docker compose run --no-deps --entrypoint /bin/sh --rm rails` to enter console for the rails app container.
+
+Do the following from within the docker container.
+
+`bundle install`
 
 Use the rails new command to create the application. Customize to suit needs, ie. testing framework.
 
@@ -23,6 +26,7 @@ Use the rails new command to create the application. Customize to suit needs, ie
 Rails will put the files in a folder named my_app_name. 
 `mv my_app_name/* . && rm -Rf my_app_name` to move the files into the current directory
 
+Now exit the container.
 Before starting the Docker compose stack, check the following:
 
 Edit rails/Procfile.dev to bind the correct address:
@@ -56,7 +60,7 @@ Rails.application.configure do
 	end
 ...
 ```
-`docker compose run --no-deps --entrypoint 'bundle install' --rm rails
+`docker compose run --no-deps --entrypoint 'bundle install' --rm rails`
 
 `docker compose up -d`
 
