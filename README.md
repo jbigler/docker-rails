@@ -30,7 +30,9 @@ Now exit the container.
 Before starting the Docker compose stack, check the following:
 
 Edit rails/Procfile.dev to bind the correct address:
-`web: bin/rails server -p 3000 -b '0.0.0.0'`
+`web: bin/rails server -p 3000 -b '0.0.0.0' --skip-bundle`
+
+We skip running bundler now because we will remove the webdirvers first.
 
 To configure Redis for production edit config/cable.yml
 
