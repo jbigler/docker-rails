@@ -6,3 +6,4 @@ PGPASSWORD=password
 HISTFILE=/usr/src/app/log/.bash_history
 REDIS_URL=redis://redis:6379/1
 POSTGRES_PASSWORD=password
+POSTGRES_INITDB_ARGS="--locale-provider=icu --icu-locale=en"
