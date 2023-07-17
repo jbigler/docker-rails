@@ -11,7 +11,7 @@ services:
       - selenium
 
   selenium:
-    image: selenium/standalone-chrome:107.0
+    image: selenium/standalone-chrome:114.0
     shm_size: 2gb
     ports:
       - "0.0.0.0:7900:7900"
